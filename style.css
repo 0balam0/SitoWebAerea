@@ -1,0 +1,32 @@
+/* Stile per l'header */
+header {
+    background-color: #333; /* Colore di sfondo scuro */
+    padding: 20px 0; /* Spaziatura sopra e sotto il menu */
+    text-align: center; /* Centra il contenuto */
+}
+
+nav ul {
+    list-style: none; /* Rimuove i puntini dai link */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Flexbox per disporre i link orizzontalmente */
+    justify-content: center; /* Centra i link orizzontalmente */
+}
+
+nav ul li {
+    margin: 0 20px; /* Distanza tra i link */
+}
+
+nav ul li a {
+    color: #fff; /* Colore del testo (bianco) */
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
+    font-size: 18px; /* Imposta la dimensione del font */
+    font-weight: bold; /* Imposta il font in grassetto */
+    padding: 10px 15px; /* Spaziatura intorno ai link */
+    transition: background-color 0.3s; /* Aggiunge un effetto di transizione per il colore di sfondo */
+}
+
+nav ul li a:hover {
+    background-color: #555; /* Colore di sfondo quando si passa sopra con il mouse */
+    border-radius: 5px; /* Angoli arrotondati per i link */
+}
