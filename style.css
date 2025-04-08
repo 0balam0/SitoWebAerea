@@ -1,11 +1,41 @@
+/* variabili generali */
+
+:root {
+    --txtcolor: #fff;   /* Colore di sfondo */
+    --bkcolor: #333;  /* Colore del testo */
+    --hovercolor : #555;
+}
+
 /* Stile per l'header */
 header {
     background-color: #333; /* Colore di sfondo scuro */
-    padding: 20px 0; /* Spaziatura sopra e sotto il menu */
-    text-align: center; /* Centra il contenuto */
+    display: flex;
 }
 
-nav ul {
+header .headerIcone{
+    text-align: center;
+    align-items: center;
+    width: 15%;               /* Ogni colonna occuperà il 45% della larghezza */
+    padding: 2px;            /* Spaziatura interna */
+    background-color: var(--bkcolor); /* Colore di sfondo quando si passa sopra con il mouse */
+    border-radius: 8px;          /* Angoli arrotondati */
+}
+
+header .navDiv{
+    align-items: center;
+    text-align: center;
+    width: 75%;               /* Ogni colonna occuperà il 45% della larghezza */  
+    padding: 2px;               /* Spaziatura interna */
+    background-color: var(--bkcolor); /* Colore di sfondo quando si passa sopra con il mouse */
+    border-radius: 8px;          /* Angoli arrotondati */  
+}
+header nav{
+    align-items: center; 
+    height: 100%;
+}
+header nav ul {
+    align-items: center; 
+    height: 100%;
     list-style: none; /* Rimuove i puntini dai link */
     padding: 0;
     margin: 0;
@@ -13,12 +43,12 @@ nav ul {
     justify-content: center; /* Centra i link orizzontalmente */
 }
 
-nav ul li {
+header nav ul li {
     margin: 0 20px; /* Distanza tra i link */
 }
 
-nav ul li a {
-    color: #fff; /* Colore del testo (bianco) */
+header nav ul li a {
+    color: var(--txtcolor); /* Colore del testo (bianco) */
     text-decoration: none; /* Rimuove la sottolineatura dai link */
     font-size: 18px; /* Imposta la dimensione del font */
     font-weight: bold; /* Imposta il font in grassetto */
@@ -26,7 +56,89 @@ nav ul li a {
     transition: background-color 0.3s; /* Aggiunge un effetto di transizione per il colore di sfondo */
 }
 
-nav ul li a:hover {
-    background-color: #555; /* Colore di sfondo quando si passa sopra con il mouse */
+header nav ul li a:hover {
+    background-color: var(--hovercolor); /* Colore di sfondo quando si passa sopra con il mouse */
     border-radius: 5px; /* Angoli arrotondati per i link */
 }
+
+
+
+/* footer style */
+
+/* Footer principale */
+footer {
+    background-color: var(--bkcolor);        /* Colore di sfondo del footer */
+    color: var(--txtcolor);                /* Colore del testo */
+    text-align: center;            /* Centra il testo */
+}
+
+/* Contenitore del footer */
+.footer-container {
+    display: flex;                 /* Usa Flexbox per disporre gli elementi */
+    justify-content: space-between; /* Spazio tra i 3 gruppi di elementi */
+    align-items: flex-start;
+    margin: 0 auto;                /* Centra il footer */
+    /*padding: 0 20px; */              /* Spaziatura laterale */
+}
+footer .colbig{
+    width : 40%;
+    padding: 50px; 
+    text-decoration: none;      
+}
+footer .colmiddle{
+    width : 20%;
+    padding: 50px;  
+    text-decoration: none;  
+}
+
+footer hr.lineSep {
+    width : 80%;
+    border: 10px;               /* Rimuove il bordo predefinito */
+    height: 2px;             /* Altezza della linea */
+    background-color: var(--txtcolor);        /* Colore della linea (bianco) */
+}
+footer .noteCopy{ 
+    padding: 10px 10px;          /* Spaziatura sopra e sotto la linea */
+    text-align: center;
+}
+
+/*HOME Style */
+.mainFigureDiv{
+    background-color: var(--bkcolor);
+}
+.mainFigure{
+    width : 100%;
+}
+
+.iconeContainer{
+    background-color: var(--bkcolor);
+    display: flex;     
+}
+.iconeContainer div{
+    width : 20%;
+    text-align: center;
+    position: relative;
+    bottom: 50px;
+}
+/*.iconeContainer div:hover{
+   
+    border-radius: 5px; 
+    background-color: var(--hovercolor);
+}*/
+.iconeContainer div img:hover {
+    background-color: var(--hovercolor); /* Colore di sfondo quando si passa sopra con il mouse */
+    transition: transform 1s ease;
+    border-radius: 10px; 
+    transform: scale(1.5); /* Ingrandisce l'immagine del 10% */
+}
+.iconeContainer div img{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px; 
+    height: 70px;
+}
+
+/* Variabili generali */
+.iconeContainer div h3{
+    color: var(--txtcolor);                /* Colore del testo */
+}
+
