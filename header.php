@@ -1,9 +1,9 @@
 <header>
   <nav>
     <ul>
-      <li><a href="<?php echo home_url(); ?>">Home</a></li>
-      <li><a href="<?php echo home_url('/about'); ?>">About</a></li>
-      <li><a href="<?php echo home_url('/contact'); ?>">Contact</a></li>
+      <li><a href="http://tuosito.com">Home</a></li>
+      <li><a href="http://tuosito.com">About</a></li>
+      <li><a href="http://tuosito.com">Contact</a></li>
     </ul>
   </nav>
-</header
+</header>
