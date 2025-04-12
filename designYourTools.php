@@ -37,8 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Richiesta Attrezzo Aereo</title>
-    <link rel="stylesheet" href="style.css"> <!-- Collega il tuo file CSS -->
+  
     <link rel="stylesheet" href="designTool.css"> <!-- Collega il tuo file CSS -->
+    <link rel="stylesheet" href="style.css"> <!-- Collega il tuo file CSS -->
 </head>
 <main>
     <body>
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="error">Errore nell'invio. Controlla i dati inseriti e riprova.</p>
         <?php endif; ?>
         
-        <div class="mainFigureDiv" style="background-image: url('images/designWallPaper.png'); opacity: 0.7;";>
+        <div class="mainDivNoimage" style="background-image: url('images/designWallPaper.png'); background-position: center; background-repeat: repeat;";>
         <div style="height: 100px;"></div>
             <form action="" method="POST" style="margin-top: 50px;margin-bottom: 50px;">
                 <div style="margin-right: 20px;">

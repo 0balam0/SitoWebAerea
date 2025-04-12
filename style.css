@@ -9,7 +9,7 @@
     --H3txtcolor: #fff;   /* Colore di sfondo */
     --ptxtcolor: #fff;   /* Colore di sfondo */
     /******************************************************* des tools */
-    --boxInfoColor : #3333337a; /* colore di sfondo del box di request tools*/
+    --boxInfoColor : #333333d4; /* colore di sfondo del box di request tools*/
     /******************************************************* shopping */
     --cardBKcolor : #333; /*card backgroud color for the card*/
     --cardBKcolorHover : #555; /*card backgroud color for the card*/
@@ -31,6 +31,8 @@
 h3{
     text-align: center;
     color: var(--H3txtcolor);                /* Colore del testo */
+    padding-right: 15px;
+    padding-left: 15px;
 }
 p{
     color: var(--ptxtcolor);                /* Colore del testo */
@@ -149,6 +151,9 @@ header nav ul li a:hover {
       flex-direction: column;
       gap: 10px;
     }
+    .headerButton{
+        display:none;
+    }
   }
 
 /* footer style */
@@ -229,6 +234,23 @@ footer .noteCopy{
     aspect-ratio: 16 / 9;                 /* Aggiungi questa se vuoi mantenere un rapporto fisso */
     
 }
+.mainDivNoimage{
+    max-width: 1200px;
+    width: 100%;
+    /*background-color: var(--bkcolor);*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+    min-height: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: center;   
+    background-image: url('images/mainFigureO.JPG');
+    min-height: auto;                     /* Altezza verrà calcolata in base al contenuto */    
+}
+
 .icoTextContainer{
     width: 100%;    
 }

@@ -11,7 +11,7 @@
 <body>
     <?php include('header.php'); ?> <!-- Includi l'header -->
     <main>
-        <div class="mainFigureDiv" style=" background-image: none; justify-content: center;">
+        <div class="mainDivNoimage" style=" background-image: none; justify-content: center;">
             <div>
             <h3> Attrezzature realizzate da materiali di ottima qualità. progettate da chi fa Aerea per chi vive l'aerea come una passione<h3>
             </div>
@@ -70,8 +70,11 @@
                 </div>
             </div>
         </div>
+        <?php include('footer.php'); ?> <!-- Includi l'header -->
     </main>
-    <?php include('footer.php'); ?> <!-- Includi l'header -->
+    <div>
+</div>
+    
 <script>
 // Funzione per aprire l'overlay e caricare la pagina PHP dinamicamente
 function toggleCard(card) {
