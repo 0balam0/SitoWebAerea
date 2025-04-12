@@ -4,9 +4,36 @@
     --txtcolor: #fff;   /* Colore di sfondo */
     --bkcolor: #333;  /* Colore del testo */
     --hovercolor : #555;
+    --button_bkcolor: #333;  /* Colore del testo */
+    --button_hovercolor : #555;
+    --H3txtcolor: #fff;   /* Colore di sfondo */
+    --ptxtcolor: #fff;   /* Colore di sfondo */
+    /******************************************************* des tools */
+    --boxInfoColor : #3333337a; /* colore di sfondo del box di request tools*/
+    /******************************************************* shopping */
+    --cardBKcolor : #333; /*card backgroud color for the card*/
+    --cardBKcolorHover : #555; /*card backgroud color for the card*/
+    --cardDescription: #030303; /*card description */
+    --cardContent: #000000;
+    --activeCardTitile:#2C3E50;
+    --cardTitleColor: #fff;
+    /******************************************************* card and products*/
+    --bkProductContainer:  #555;
+    --productTileClor: #fff;
+    --productDescClor: #fff;
+    /********************************************************** header */
+    --lineeHamburger: #fff;
+    --colorHamburgerBK: #2C3E50;
 }
 
-/* Stile per l'header */
+h3{
+    text-align: center;
+    color: var(--H3txtcolor);                /* Colore del testo */
+}
+p{
+    color: var(--ptxtcolor);                /* Colore del testo */
+}
+/************************************************************************************* Stile per l'header */
 header {
     background-color: #333; /* Colore di sfondo scuro */
     display: flex;
@@ -33,11 +60,12 @@ header nav{
     align-items: center; 
     height: 100%;
 }
+
 header nav ul {
     align-items: center; 
     height: 100%;
     list-style: none; /* Rimuove i puntini dai link */
-    padding: 0;
+    padding: 15px;
     margin: 0;
     display: flex; /* Flexbox per disporre i link orizzontalmente */
     justify-content: center; /* Centra i link orizzontalmente */
@@ -61,17 +89,76 @@ header nav ul li a:hover {
     border-radius: 5px; /* Angoli arrotondati per i link */
 }
 
+/* HAMBURGER */
+.hamburgerDiv{
+    display: none;
+    width: 100%;
+    
+}
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    margin-left: 10px;
+  }
+  
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--lineeHamburger);
+    display: block;
+  }
+  
+  /* Responsive */
+  @media (max-width: 800px) {
+    .hamburgerDiv{
+        display:flex;
+        justify-content: space-between;
+    }
+    .hamburger {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .navDiv {
+      display: none;
+      position: absolute;
+      top: 70px;
+      margin-left: 10px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 10px;
+      z-index: 10;
+    }
+    .headerIcone{
+        display: none;
+    }
+
+    .navDiv.active {
+      display: block;
+      background-color: var(--colorHamburgerBK);
+    }
+  
+    .navDiv ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
 
 /* footer style */
 
-/* Footer principale */
+/******************************************************************************************************** Footer principale */
 footer {
     background-color: var(--bkcolor);        /* Colore di sfondo del footer */
     color: var(--txtcolor);                /* Colore del testo */
     text-align: center;            /* Centra il testo */
 }
-
+footer p{
+    margin: 2px;
+}
 /* Contenitore del footer */
 .footer-container {
     display: flex;                 /* Usa Flexbox per disporre gli elementi */
@@ -83,12 +170,20 @@ footer {
 footer .colbig{
     width : 40%;
     padding: 50px; 
-    text-decoration: none;      
+    text-decoration: none;  
+    justify-content: center;    
 }
+.imgLogo{
+    width: 40%;
+}
+
 footer .colmiddle{
     width : 20%;
     padding: 50px;  
-    text-decoration: none;  
+    text-decoration: none; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
 }
 
 footer hr.lineSep {
@@ -102,29 +197,33 @@ footer .noteCopy{
     text-align: center;
 }
 
-/*HOME Style */
+/********************************************************************************************* HOME Style */
 .mainFigureDiv{
-    background-color: var(--bkcolor);
+    max-width: 1200px;
+    /*background-color: var(--bkcolor);*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-height: 600px;
+    
 }
 .mainFigure{
     width : 100%;
+    /*mask-image: linear-gradient(var(--bkcolor) 20%, transparent 100%);
+    -webkit-mask-image: linear-gradient(var(--bkcolor) 50%, transparent 100%);*/
 }
 
 .iconeContainer{
-    background-color: var(--bkcolor);
-    display: flex;     
+    background-color: #33333300; /*var(--bkcolor);*/
+    display: flex;    
+    /*position: relative;*/
+    /*bottom: 50px; */
 }
 .iconeContainer div{
     width : 20%;
     text-align: center;
-    position: relative;
-    bottom: 50px;
 }
-/*.iconeContainer div:hover{
-   
-    border-radius: 5px; 
-    background-color: var(--hovercolor);
-}*/
+
 .iconeContainer div img:hover {
     background-color: var(--hovercolor); /* Colore di sfondo quando si passa sopra con il mouse */
     transition: transform 1s ease;
@@ -135,10 +234,96 @@ footer .noteCopy{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px; 
     height: 70px;
+    cursor: pointer;
 }
 
 /* Variabili generali */
-.iconeContainer div h3{
-    color: var(--txtcolor);                /* Colore del testo */
+
+
+body {
+    background-color: var(--bkcolor);
+    max-width: 1200px;  /* Limita la larghezza massima a 1200px */
+    margin: 0 auto;     /* Centra il body orizzontalmente */
+    padding: 0;         /* Rimuove eventuali spazi interni, se ce ne sono */
+  }
+  
+  html, body {
+    height: 100%;       /* Imposta l'altezza al 100% per la pagina */
+  }
+
+.divDescHome{
+    text-align: center;
+    margin: 50px;
+} 
+  /**************************************************** GALLERIA AUTO**************/
+  .galleria-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .galleria-container::-webkit-scrollbar {
+    display: none; /* Nasconde la scrollbar */
+  }
+
+  .galleria-container .immagineDiv {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 150px;
+    border-radius: 8px;
+    background-color: #ccc;
+    scroll-snap-align: start;
+    overflow: hidden;
+  }
+
+  .galleria-container .immagineDiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /************************************************************************************* Stile per l'header2 */
+.header2 {
+    background-color: #333; /* Colore di sfondo scuro */
+    display: flex;
 }
 
+.header2 .headerIcone{
+    text-align: center;
+    align-items: center;
+    width: 15%;               /* Ogni colonna occuperà il 45% della larghezza */
+    padding: 2px;            /* Spaziatura interna */
+    background-color: var(--bkcolor); /* Colore di sfondo quando si passa sopra con il mouse */
+    border-radius: 8px;          /* Angoli arrotondati */
+    padding-left: 20px;
+}
+
+.header2 .buttonDiv{
+    width: 100%;   
+    text-align: right;  /* Allinea il testo a destra */
+    display: flex;
+    justify-content: flex-end;  /* Allinea gli elementi a destra */
+    align-items: center;
+    padding-right: 20px; 
+}
+
+.header2 .headerButton{
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px; 
+    background-color: var(--button_bkcolor);
+}
+
+.header2 .headerButton:hover{
+    background-color: var(--button_hovercolor);
+    transition: transform 1s ease;
+    border-radius: 10px; 
+    transform: scale(1.2); /* Ingrandisce l'immagine del 10% */
+}
