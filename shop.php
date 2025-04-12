@@ -11,7 +11,7 @@
 <body>
     <?php include('header.php'); ?> <!-- Includi l'header -->
     <main>
-        <div class="mainFigureDiv">
+        <div class="mainFigureDiv" style=" background-image: none; justify-content: center;">
             <div>
             <h3> Attrezzature realizzate da materiali di ottima qualità. progettate da chi fa Aerea per chi vive l'aerea come una passione<h3>
             </div>

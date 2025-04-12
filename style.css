@@ -24,6 +24,8 @@
     /********************************************************** header */
     --lineeHamburger: #fff;
     --colorHamburgerBK: #2C3E50;
+    /********************************************************** iconeContainer*/
+    --iconeContainerColor: #03030354;
 }
 
 h3{
@@ -37,6 +39,7 @@ p{
 header {
     background-color: #333; /* Colore di sfondo scuro */
     display: flex;
+    width: 100%;
 }
 
 header .headerIcone{
@@ -200,13 +203,43 @@ footer .noteCopy{
 /********************************************************************************************* HOME Style */
 .mainFigureDiv{
     max-width: 1200px;
+    width: 100%;
     /*background-color: var(--bkcolor);*/
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: top center;
     min-height: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: center;   
+    background-image: url('images/mainFigureO.JPG');
+    min-height: auto;                     /* Altezza verrà calcolata in base al contenuto */
+    aspect-ratio: 16 / 9;                 /* Aggiungi questa se vuoi mantenere un rapporto fisso */
     
 }
+.icoTextContainer{
+    width: 100%;    
+}
+
+@media (max-width: 800px) {
+    .mainFigureDiv{
+        background-image: url('images/mainFigureV.JPG');
+        min-height: auto;
+        aspect-ratio: 12 / 16;
+        align-content: center;
+        justify-content: flex-start;
+    }
+    .iconeContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .iconeContainer div img{
+        width: 70px;
+    }
+}
+
 .mainFigure{
     width : 100%;
     /*mask-image: linear-gradient(var(--bkcolor) 20%, transparent 100%);
@@ -215,13 +248,17 @@ footer .noteCopy{
 
 .iconeContainer{
     background-color: #33333300; /*var(--bkcolor);*/
-    display: flex;    
+    display: flex;
+    /*width: 100%;    */
     /*position: relative;*/
     /*bottom: 50px; */
 }
 .iconeContainer div{
-    width : 20%;
+    width : 100%;
     text-align: center;
+    margin: 5px;
+    background-color:var(--iconeContainerColor);
+    border-radius: 10px;
 }
 
 .iconeContainer div img:hover {
@@ -245,8 +282,19 @@ body {
     max-width: 1200px;  /* Limita la larghezza massima a 1200px */
     margin: 0 auto;     /* Centra il body orizzontalmente */
     padding: 0;         /* Rimuove eventuali spazi interni, se ce ne sono */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
+  main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;  /* Limita la larghezza massima a 1200px */
+  }
+
   html, body {
     height: 100%;       /* Imposta l'altezza al 100% per la pagina */
   }
@@ -262,6 +310,7 @@ body {
     gap: 10px;
     padding-bottom: 10px;
     scroll-snap-type: x mandatory;
+    width: 90%;
   }
 
   .galleria-container::-webkit-scrollbar {
@@ -270,8 +319,7 @@ body {
 
   .galleria-container .immagineDiv {
     flex: 0 0 auto;
-    width: 200px;
-    height: 150px;
+    width: 32.5%;
     border-radius: 8px;
     background-color: #ccc;
     scroll-snap-align: start;
@@ -289,6 +337,9 @@ body {
 .header2 {
     background-color: #333; /* Colore di sfondo scuro */
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 1200px;
 }
 
 .header2 .headerIcone{
@@ -301,8 +352,7 @@ body {
     padding-left: 20px;
 }
 
-.header2 .buttonDiv{
-    width: 100%;   
+.header2 .buttonDiv{  
     text-align: right;  /* Allinea il testo a destra */
     display: flex;
     justify-content: flex-end;  /* Allinea gli elementi a destra */

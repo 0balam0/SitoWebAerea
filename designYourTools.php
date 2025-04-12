@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <div class="mainFigureDiv" style="background-image: url('images/designWallPaper.png'); opacity: 0.7;";>
         <div style="height: 100px;"></div>
-            <form action="" method="POST">
+            <form action="" method="POST" style="margin-top: 50px;margin-bottom: 50px;">
                 <div style="margin-right: 20px;">
                     <h3>Richiedi un attrezzo personalizzato</h3>
                     <label for="nome">Il tuo nome</label>

@@ -10,31 +10,31 @@
     <!-- <?php include('header.php'); ?> --> <!-- Includi l'header -->
     <?php include('header2.php'); ?> <!-- Includi l'header -->
     <main>
-        <div class="mainFigureDiv" style="background-image: url('images/image_home.png');">
+        <div class="mainFigureDiv">
         <!--<img src="images/image_home.png" alt="Site icone" class=mainFigure>-->
-        <div style="min-height: 650px;"></div>
+        <!--<div class="spaceMainFig" ></div>-->
             <div class=iconeContainer>
-                <div >
-                </div>
                 <div>
+                </div>
+                <div class="icoTextContainer">
                     <a href="/SitoWebAerea/designYourTools.php">
                         <img src="images/icone/designIco.png" alt="designIco">
                     </a>
                     <h3>Design your tools</h3> 
                 </div>    
-                <div >
+                <div class="icoTextContainer">
                     <a href="/SitoWebAerea/shop.php">
                         <img src="images/icone/shopIco.png" alt="shopIco">
                     </a>
                     <h3>Shop</h3>     
                 </div>
-                <div >
+                <div class="icoTextContainer">
                     <a href="/SitoWebAerea/rent.php">
                         <img src="images/icone/rentIco.png" alt="shopIco">
                     </a>
                     <h3>Rent</h3>     
                 </div>
-                <div >
+                <div class="icoTextContainer">
                     <a href="/SitoWebAerea/aboutUs.php">
                         <img src="images/icone/infoIco.png" alt="InfoIco">
                     </a>
