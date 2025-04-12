@@ -170,6 +170,16 @@ footer p{
     margin: 0 auto;                /* Centra il footer */
     /*padding: 0 20px; */              /* Spaziatura laterale */
 }
+@media (max-width: 800px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .imgLogo{
+        width: 40%;
+    }
+}
+
 footer .colbig{
     width : 40%;
     padding: 50px; 
@@ -177,7 +187,7 @@ footer .colbig{
     justify-content: center;    
 }
 .imgLogo{
-    width: 40%;
+    width: 30%;
 }
 
 footer .colmiddle{
@@ -236,7 +246,8 @@ footer .noteCopy{
         align-items: center;
     }
     .iconeContainer div img{
-        width: 70px;
+        height: 50px;
+        width: auto;
     }
 }
 
@@ -270,7 +281,7 @@ footer .noteCopy{
 .iconeContainer div img{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px; 
-    height: 70px;
+    height: 50px;
     cursor: pointer;
 }
 
@@ -288,7 +299,7 @@ body {
   }
 
   main{
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: center;
     width: 100%;
@@ -309,8 +320,8 @@ body {
     overflow-x: auto;
     gap: 10px;
     padding-bottom: 10px;
-    scroll-snap-type: x mandatory;
-    width: 90%;
+   /* scroll-snap-type: x mandatory;
+    width: 90%;*/
   }
 
   .galleria-container::-webkit-scrollbar {

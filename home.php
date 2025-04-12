@@ -14,33 +14,29 @@
         <!--<img src="images/image_home.png" alt="Site icone" class=mainFigure>-->
         <!--<div class="spaceMainFig" ></div>-->
             <div class=iconeContainer>
-                <div>
-                </div>
                 <div class="icoTextContainer">
                     <a href="/SitoWebAerea/designYourTools.php">
                         <img src="images/icone/designIco.png" alt="designIco">
                     </a>
-                    <h3>Design your tools</h3> 
+                    <p>Design your tools</p> 
                 </div>    
                 <div class="icoTextContainer">
                     <a href="/SitoWebAerea/shop.php">
                         <img src="images/icone/shopIco.png" alt="shopIco">
                     </a>
-                    <h3>Shop</h3>     
+                    <p>Shop</p>     
                 </div>
                 <div class="icoTextContainer">
                     <a href="/SitoWebAerea/rent.php">
                         <img src="images/icone/rentIco.png" alt="shopIco">
                     </a>
-                    <h3>Rent</h3>     
+                    <p>Rent</p>     
                 </div>
                 <div class="icoTextContainer">
                     <a href="/SitoWebAerea/aboutUs.php">
                         <img src="images/icone/infoIco.png" alt="InfoIco">
                     </a>
-                    <h3>About Us</h3>     
-                </div>
-                <div >
+                    <p>About Us</p>     
                 </div>
             </div>
 
