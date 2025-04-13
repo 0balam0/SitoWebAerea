@@ -210,7 +210,6 @@ footer .noteCopy{
     flex-wrap: wrap;
     align-content: flex-end;
     justify-content: center;   
-    background-image: url('images/mainFigureO.JPG');
     min-height: auto;                     /* Altezza verrà calcolata in base al contenuto */    
 }
 
@@ -372,4 +371,53 @@ body {
     transition: transform 1s ease;
     border-radius: 10px; 
     transform: scale(1.2); /* Ingrandisce l'immagine del 10% */
+}
+
+/************************************************************** ABOUTUS*/
+.person-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 10%;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.person-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.person-text {
+    flex: 1;
+    min-width: 250px;
+}
+
+.person-text h2 {
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.person-text p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.person-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.person-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+}
+
+.person-image img:hover {
+    transform: scale(1.3);
 }

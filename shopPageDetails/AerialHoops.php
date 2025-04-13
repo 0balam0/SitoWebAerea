@@ -99,7 +99,7 @@
     </div>
 
     <!-- Overlay Immagine Ingrandita -->
-    <div class="overlay" id="image-overlay">
+    <div class="overlayImgDiv" id="image-overlay">
         <span class="close-btn" onclick="closeOverlayImg()">×</span>
         <img id="overlay-image" src="" alt="Immagine Ingrandita">
     </div>
