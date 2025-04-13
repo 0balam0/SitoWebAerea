@@ -62,9 +62,10 @@
             </div>
 
             <div id="overlay" class="overlay">
-                <span class="close-btn" onclick="closeOverlay()">×</span>
+                
                 <div class="overlay-content">
                     <div id="overlay-inner-content">
+                    
                     <!-- Qui inserisci dinamicamente il contenuto della card -->
                     </div>
                 </div>

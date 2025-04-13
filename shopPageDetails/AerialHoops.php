@@ -9,7 +9,7 @@
     <title>Vetrina Prodotto</title>
 </head>
 <body>
-
+    <span class="close-btn" onclick="closeOverlay()">×</span>
     <div class="product-container">
         <!-- Immagini Prodotto -->
         <div class="product-images">

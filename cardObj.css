@@ -93,9 +93,9 @@
 }
 
 .close-btn {
-    position: absolute;
+    /*position: absolute;
     top: 20px;
-    right: 50px;
+    right: 50px;*/
     color: white;
     font-size: 2rem;
     background-color: rgba(0, 0, 0, 0.5);
@@ -249,6 +249,7 @@
     text-align: center;
     z-index: 1000;  /* L'overlay si sovrappone al contenuto */
     overflow-y: auto; /* Permette lo scorrimento dell'overlay */
+    flex-direction: column;
 }
 
 .overlayImgDiv img {
@@ -282,7 +283,10 @@
         margin-top: 30px;
         margin-left: 0px;
     }
-    .overlayImgDiv{
-        display: block;
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 50px;
     }
+    
 }
