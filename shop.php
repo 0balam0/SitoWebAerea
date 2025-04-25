@@ -292,14 +292,14 @@
     
     <!-- Product Detail Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="overlay-content max-w-4xl w-full glass-card rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+        <div class="overlay-content max-w-5xl w-full glass-card rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
             <div class="relative">
                 <button onclick="closeOverlay()" class="absolute top-4 right-4 text-white hover:text-accent z-10 transition-colors duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <div id="overlay-inner-content" class="p-6 md:p-8">
+                <div id="overlay-inner-content" class="p-0 md:p-0">
                     <!-- Content will be loaded here -->
                 </div>
             </div>
@@ -313,12 +313,30 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
-        <img id="overlay-image" src="" alt="Product Detail" class="max-w-full max-h-[90vh] object-contain">
+        <div class="max-w-full max-h-[90vh] relative">
+            <img id="overlay-image" src="" alt="Product Detail" class="max-w-full max-h-[90vh] object-contain">
+            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                <button id="prev-image" class="bg-white/10 hover:bg-white/20 rounded-full p-2 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="next-image" class="bg-white/10 hover:bg-white/20 rounded-full p-2 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </div>
     
     <?php include('footer.php'); ?>
     
     <script>
+    // Product gallery images for the current product
+    let currentProductImages = [];
+    let currentImageIndex = 0;
+    
     // Improved functions for product cards and overlays
     function toggleCard(card) {
         const cardId = card.getAttribute('data-id');
@@ -344,6 +362,9 @@
                 overlay.style.display = 'flex';
                 overlay.classList.add('overlay-fade-enter');
                 
+                // Initialize product gallery if exists
+                initProductGallery();
+                
                 // Find and enhance the overlay content
                 const contentElements = overlayContent.querySelectorAll('.product-detail-content');
                 contentElements.forEach(el => {
@@ -352,6 +373,9 @@
                 
                 // Reset loading state
                 card.classList.remove('opacity-70');
+                
+                // Add tabs functionality if needed
+                initProductTabs();
             } else {
                 console.error('Error loading content');
                 card.classList.remove('opacity-70');
@@ -375,9 +399,48 @@
         }, 300);
     }
 
-    function openImage(imgElement) {
+    function initProductGallery() {
+        // Find all gallery images
+        const galleryImages = document.querySelectorAll('.product-images img');
+        if (galleryImages.length === 0) return;
+        
+        // Store image sources for navigation
+        currentProductImages = Array.from(galleryImages).map(img => img.src);
+        
+        // Add click listeners to all images
+        galleryImages.forEach((img, index) => {
+            img.onclick = function() {
+                openImage(this, index);
+            };
+        });
+        
+        // Add click event listeners to navigation buttons
+        document.getElementById('prev-image').addEventListener('click', showPrevImage);
+        document.getElementById('next-image').addEventListener('click', showNextImage);
+    }
+    
+    function showPrevImage(e) {
+        e.stopPropagation();
+        if (currentProductImages.length <= 1) return;
+        
+        currentImageIndex = (currentImageIndex - 1 + currentProductImages.length) % currentProductImages.length;
+        document.getElementById('overlay-image').src = currentProductImages[currentImageIndex];
+    }
+    
+    function showNextImage(e) {
+        e.stopPropagation();
+        if (currentProductImages.length <= 1) return;
+        
+        currentImageIndex = (currentImageIndex + 1) % currentProductImages.length;
+        document.getElementById('overlay-image').src = currentProductImages[currentImageIndex];
+    }
+
+    function openImage(imgElement, index = 0) {
         const overlay = document.getElementById('image-overlay');
         const overlayImage = document.getElementById('overlay-image');
+        
+        // Set current image index
+        currentImageIndex = index !== undefined ? index : 0;
         
         // Preload image and show overlay when ready
         const img = new Image();
@@ -399,6 +462,30 @@
             overlay.style.display = 'none';
             document.body.classList.remove('overflow-hidden');
         }, 300);
+    }
+    
+    function initProductTabs() {
+        const tabButtons = document.querySelectorAll('.product-tab-button');
+        const tabContents = document.querySelectorAll('.product-tab-content');
+        
+        if (tabButtons.length === 0) return;
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-tab');
+                
+                // Remove active state from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active state to clicked button and matching content
+                button.classList.add('active');
+                document.querySelector(`.product-tab-content[data-tab="${target}"]`).classList.add('active');
+            });
+        });
+        
+        // Activate first tab by default
+        if (tabButtons[0]) tabButtons[0].click();
     }
 
     function addToCart() {
@@ -431,6 +518,17 @@
                 closeOverlayImg();
             } else if (document.getElementById('overlay').style.display === 'flex') {
                 closeOverlay();
+            }
+        }
+    });
+    
+    // Arrow key navigation for image gallery
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('image-overlay').style.display === 'flex') {
+            if (e.key === 'ArrowLeft') {
+                showPrevImage(e);
+            } else if (e.key === 'ArrowRight') {
+                showNextImage(e);
             }
         }
     });
