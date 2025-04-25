@@ -8,7 +8,7 @@
                     <div class="absolute -inset-2 bg-gradient-to-r from-accent to-accent-secondary rounded-full blur opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
                     <div class="relative">
                         <img src="images/icone/iconaBase.svg" alt="Mari&Matt aerialDesign Logo" 
-                             class="h-12 w-auto transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                             class="h-12 w-auto transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 logo-image">
                     </div>
                     <div class="font-display font-bold text-xl">
                         <span class="text-white">Mari&Matt</span>
@@ -121,6 +121,18 @@
 
 <!-- Spacer to prevent content from hiding under fixed header -->
 <div class="h-20"></div>
+
+<!-- Custom Styles for Logo -->
+<style>
+    .logo-image {
+        filter: brightness(0) invert(1); /* Makes the SVG white */
+        transition: filter 0.3s ease;
+    }
+    
+    .group:hover .logo-image {
+        filter: brightness(0) invert(0); /* Makes the SVG black on hover */
+    }
+</style>
 
 <!-- Header JavaScript -->
 <script>

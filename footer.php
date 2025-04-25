@@ -16,7 +16,7 @@
                     <div class="absolute -inset-2 bg-gradient-to-r from-accent to-accent-secondary rounded-full blur opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
                     <div class="relative flex items-center gap-3">
                         <img src="images/icone/iconaBase.svg" alt="Mari&Matt aerialDesign Logo" 
-                             class="h-10 w-auto transition-all duration-500 group-hover:rotate-6">
+                             class="h-10 w-auto transition-all duration-500 group-hover:rotate-6 logo-image">
                         <div class="font-display font-bold text-lg">
                             <span class="text-white">Mari&Matt</span>
                             <span class="block text-xs text-gradient">aerialDesign</span>
