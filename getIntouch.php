@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get in Touch - Aerea</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        secondary: '#1e293b',
+                        accent: '#06b6d4',
+                        'accent-secondary': '#f472b6',
+                        dark: '#020617',
+                        'text-light': '#f8fafc',
+                        'text-muted': '#94a3b8'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Poppins', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        glow: '0 0 20px rgba(6, 182, 212, 0.35)',
+                        'glow-lg': '0 0 30px rgba(6, 182, 212, 0.45)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <style>
         .social-link {
@@ -83,7 +113,7 @@
     </style>
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <?php include('header2.php'); ?>
     
     <div class="container mx-auto px-4 py-16">
         <div class="text-center mb-12">

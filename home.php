@@ -246,6 +246,55 @@
         </div>
     </section>
 
+    <!-- 3D Design Section -->
+    <section class="relative py-24 overflow-hidden" id="design-experience">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-6">
+                    <span class="text-gradient">Experience Our Design Process</span>
+                </h2>
+                <p class="text-lg text-text-muted max-w-2xl mx-auto">
+                    Watch how we transform raw concepts into beautiful, functional aerial equipment through our 
+                    meticulous design and manufacturing process.
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- 3D Canvas Container -->
+                <div class="w-full h-[70vh] relative rounded-3xl overflow-hidden glass-card" id="canvas-container">
+                    <!-- Canvas will be inserted here by Three.js -->
+                </div>
+                
+                <!-- Interactive Elements -->
+                <div class="absolute top-8 left-8 z-10 bg-dark/70 backdrop-blur-md p-6 rounded-xl max-w-xs opacity-0 transition-opacity duration-500" id="design-info">
+                    <h3 class="text-xl font-semibold text-accent mb-3">Aerial Hoop Design</h3>
+                    <p class="text-text-muted mb-4">Our custom aerial hoops are crafted from premium materials, engineered for optimal strength-to-weight ratio and designed with performer comfort in mind.</p>
+                    <div class="flex gap-3">
+                        <div class="text-xs bg-accent/20 px-3 py-1 rounded-full text-accent">Stainless Steel</div>
+                        <div class="text-xs bg-accent-secondary/20 px-3 py-1 rounded-full text-accent-secondary">Custom Size</div>
+                    </div>
+                </div>
+                
+                <!-- Design Stages -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex gap-4 py-3 px-4 rounded-full bg-dark/60 backdrop-blur-md">
+                    <button class="w-3 h-3 rounded-full bg-white/30 transition-all duration-300 hover:bg-accent design-stage active" data-stage="sketch"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/30 transition-all duration-300 hover:bg-accent design-stage" data-stage="wireframe"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/30 transition-all duration-300 hover:bg-accent design-stage" data-stage="material"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/30 transition-all duration-300 hover:bg-accent design-stage" data-stage="final"></button>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-16">
+                <a href="/SitoWebAerea/designYourTools.php" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient rounded-full text-white font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-glow">
+                    <span>Design Your Own</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section class="relative py-20 overflow-hidden">
         <div class="container mx-auto px-4">
@@ -482,6 +531,243 @@
                     gallery.scrollLeft = scrollLeft - walk;
                 });
             }
+        });
+    </script>
+    
+    <!-- Three.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+    
+    <!-- 3D Aerial Hoop Visualization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup Three.js only if the container exists
+            const canvasContainer = document.getElementById('canvas-container');
+            if (!canvasContainer) return;
+            
+            // Scene setup
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x121212);
+            
+            // Camera setup
+            const camera = new THREE.PerspectiveCamera(75, canvasContainer.clientWidth / canvasContainer.clientHeight, 0.1, 1000);
+            camera.position.set(0, 0, 5);
+            
+            // Renderer setup
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            canvasContainer.appendChild(renderer.domElement);
+            
+            // Controls
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.rotateSpeed = 0.5;
+            controls.minDistance = 3;
+            controls.maxDistance = 8;
+            
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            const pointLight = new THREE.PointLight(0xff9dff, 1, 10);
+            pointLight.position.set(2, 2, 2);
+            scene.add(pointLight);
+            
+            // Aerial Hoop Models for different stages
+            let currentModel = null;
+            const hoopRadius = 2;
+            const tubeRadius = 0.08;
+            const radialSegments = 50;
+            const tubularSegments = 30;
+            
+            // Materials for different stages
+            const materials = {
+                sketch: new THREE.MeshBasicMaterial({ 
+                    color: 0xffffff,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.3
+                }),
+                wireframe: new THREE.MeshStandardMaterial({
+                    color: 0x6ebafe,
+                    wireframe: true
+                }),
+                material: new THREE.MeshStandardMaterial({
+                    color: 0xc8c8c8,
+                    metalness: 0.8,
+                    roughness: 0.2
+                }),
+                final: new THREE.MeshStandardMaterial({
+                    color: 0xd4af37,
+                    metalness: 1,
+                    roughness: 0.1
+                })
+            };
+            
+            // Helper function to create a hoop
+            function createHoop(stage) {
+                // Remove previous model if it exists
+                if (currentModel) {
+                    scene.remove(currentModel);
+                }
+                
+                // Create new geometry
+                const geometry = new THREE.TorusGeometry(
+                    hoopRadius, 
+                    tubeRadius, 
+                    radialSegments, 
+                    tubularSegments
+                );
+                
+                // Create mesh with appropriate material
+                const hoop = new THREE.Mesh(geometry, materials[stage]);
+                
+                // Add to scene and update current model reference
+                scene.add(hoop);
+                currentModel = hoop;
+                
+                // Initial animation based on stage
+                if (stage === 'sketch') {
+                    hoop.scale.set(0.1, 0.1, 0.1);
+                    gsap.to(hoop.scale, {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        duration: 1.5,
+                        ease: "elastic.out(1, 0.3)"
+                    });
+                } else {
+                    hoop.rotation.x = Math.PI / 2;
+                    
+                    // Add some animation
+                    gsap.fromTo(hoop.rotation, 
+                        { y: -Math.PI / 4 },
+                        { y: Math.PI / 4, duration: 2, ease: "power1.inOut", yoyo: true, repeat: -1 }
+                    );
+                }
+                
+                return hoop;
+            }
+            
+            // Initial creation
+            createHoop('sketch');
+            
+            // Handle stage buttons
+            const stageButtons = document.querySelectorAll('.design-stage');
+            stageButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    stageButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Create new model for the selected stage
+                    const stage = button.getAttribute('data-stage');
+                    createHoop(stage);
+                    
+                    // Show info panel
+                    const infoPanel = document.getElementById('design-info');
+                    gsap.to(infoPanel, { opacity: 1, duration: 0.5 });
+                    
+                    // Update info content based on stage
+                    const infoTitle = infoPanel.querySelector('h3');
+                    const infoText = infoPanel.querySelector('p');
+                    
+                    switch(stage) {
+                        case 'sketch':
+                            infoTitle.textContent = 'Design Sketch';
+                            infoText.textContent = 'We begin with precise measurements and design calculations to ensure each aerial hoop meets performance requirements.';
+                            break;
+                        case 'wireframe':
+                            infoTitle.textContent = 'Wireframe Model';
+                            infoText.textContent = 'Our digital design process enables us to model and test the physics of each piece before production begins.';
+                            break;
+                        case 'material':
+                            infoTitle.textContent = 'Material Selection';
+                            infoText.textContent = 'We use aerospace-grade stainless steel for durability, with options for custom finishes and coatings.';
+                            break;
+                        case 'final':
+                            infoTitle.textContent = 'Final Product';
+                            infoText.textContent = 'The finished aerial hoop combines beauty and functionality, ready for professional performance use.';
+                            break;
+                    }
+                });
+            });
+            
+            // Scroll trigger animation
+            function createScrollAnimation() {
+                const scrollTrigger = {
+                    trigger: '#design-experience',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    onEnter: () => {
+                        if (currentModel) {
+                            gsap.to(currentModel.rotation, { 
+                                x: Math.PI * 2, 
+                                duration: 2,
+                                ease: "power2.out"
+                            });
+                            
+                            // Show info panel with delay
+                            const infoPanel = document.getElementById('design-info');
+                            gsap.to(infoPanel, { 
+                                opacity: 1, 
+                                duration: 0.5,
+                                delay: 1
+                            });
+                        }
+                    },
+                    onLeave: () => {
+                        if (currentModel) {
+                            gsap.to(currentModel.rotation, { 
+                                y: 0, 
+                                duration: 1
+                            });
+                        }
+                    }
+                };
+                
+                // Create scroll trigger
+                ScrollTrigger.create(scrollTrigger);
+            }
+            
+            // Call when GSAP ScrollTrigger is available
+            if (window.ScrollTrigger) {
+                createScrollAnimation();
+            } else {
+                // Wait for GSAP to load
+                window.addEventListener('load', () => {
+                    if (window.ScrollTrigger) createScrollAnimation();
+                });
+            }
+            
+            // Resize handler
+            window.addEventListener('resize', () => {
+                camera.aspect = canvasContainer.clientWidth / canvasContainer.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                
+                // Gentle rotation
+                if (currentModel) {
+                    currentModel.rotation.y += 0.001;
+                }
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
         });
     </script>
 </body>
